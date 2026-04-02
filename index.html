@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USCG Service Wide Study App</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Study App</p>
+        <h1>U.S. Coast Guard Service Wide Exam</h1>
+      </div>
+      <div class="topbar-actions">
+        <button id="resumeBtn" class="secondary-btn">Continue Saved Session</button>
+        <button id="resetBtn" class="danger-btn">Restart Progress</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <section class="panel">
+          <h2>Mode</h2>
+          <div class="mode-toggle" role="group" aria-label="Study mode selector">
+            <button id="studyModeBtn" class="mode-btn active">Study</button>
+            <button id="quizModeBtn" class="mode-btn">Quiz</button>
+          </div>
+          <p class="helper-text">
+            Study mode shows feedback immediately. Quiz mode saves feedback for the summary screen.
+          </p>
+        </section>
+
+        <section class="panel">
+          <h2>Filters</h2>
+          <label class="field">
+            <span>Category</span>
+            <select id="categoryFilter">
+              <option value="all">All categories</option>
+            </select>
+          </label>
+          <label class="checkbox-row">
+            <input type="checkbox" id="missedOnlyFilter">
+            <span>Only missed questions</span>
+          </label>
+          <label class="checkbox-row">
+            <input type="checkbox" id="reviewOnlyFilter">
+            <span>Only needs review</span>
+          </label>
+        </section>
+
+        <section class="panel stats-panel">
+          <h2>Progress</h2>
+          <div class="progress-meta">
+            <span id="questionCounter">Question 0 of 0</span>
+            <span id="coveragePercent">0% covered</span>
+          </div>
+          <div class="progress-bar" aria-hidden="true">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+          <dl class="stats-grid">
+            <div>
+              <dt>Total</dt>
+              <dd id="totalQuestionsStat">0</dd>
+            </div>
+            <div>
+              <dt>Completed</dt>
+              <dd id="completedStat">0</dd>
+            </div>
+            <div>
+              <dt>Correct</dt>
+              <dd id="correctStat">0</dd>
+            </div>
+            <div>
+              <dt>Incorrect</dt>
+              <dd id="incorrectStat">0</dd>
+            </div>
+            <div>
+              <dt>Score</dt>
+              <dd id="scoreStat">0%</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="panel">
+          <h2>Question Options</h2>
+          <div class="flag-actions">
+            <button id="markKnowBtn" class="secondary-btn">Mark “I know this”</button>
+            <button id="markReviewBtn" class="secondary-btn">Mark “Need review”</button>
+          </div>
+        </section>
+      </aside>
+
+      <section class="content">
+        <section id="statusBanner" class="status-banner hidden"></section>
+
+        <section class="panel question-panel">
+          <div class="question-head">
+            <div>
+              <p id="questionCategory" class="pill">Category</p>
+              <h2 id="questionText">Loading questions...</h2>
+            </div>
+          </div>
+
+          <div id="choicesContainer" class="choices" role="list"></div>
+
+          <div id="feedbackBox" class="feedback hidden"></div>
+
+          <div class="nav-row">
+            <button id="prevBtn" class="secondary-btn">Previous</button>
+            <button id="nextBtn" class="primary-btn">Next</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="summary-header">
+            <h2>Summary Dashboard</h2>
+            <button id="finishQuizBtn" class="primary-btn">Finish Quiz / Refresh Summary</button>
+          </div>
+          <div class="summary-grid">
+            <article>
+              <h3>Know Well</h3>
+              <ul id="knowWellList" class="summary-list"></ul>
+            </article>
+            <article>
+              <h3>Need Work</h3>
+              <ul id="needWorkList" class="summary-list"></ul>
+            </article>
+            <article>
+              <h3>Missed Questions</h3>
+              <ul id="missedList" class="summary-list"></ul>
+            </article>
+            <article>
+              <h3>Weak Categories</h3>
+              <ul id="weakCategoriesList" class="summary-list"></ul>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script src="./app.js" type="module"></script>
+</body>
+</html>
